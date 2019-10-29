@@ -8,7 +8,7 @@ By Nan Zhang, 2019/06/04
 *作者：lmp31
 """
 import cv2
-import numpy
+import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -38,12 +38,13 @@ Beta_Kaiser = 2.0 #default 2.0
 def init(img, _blk_size, _Beta_Kaiser):
     """该函数用于初始化，返回用于记录过滤后图像以及权重的数组,还有构造凯撒窗"""
     m_shape = img.shape
-    #m_img = numpy.matrix(numpy.zeros(m_shape, dtype=float))
-    #m_wight = numpy.matrix(numpy.zeros(m_shape, dtype=float))
-    m_img = numpy.zeros(m_shape, dtype=float)
-    m_wight = numpy.zeros(m_shape, dtype=float)
-    K = numpy.matrix(numpy.kaiser(_blk_size, _Beta_Kaiser))
-    m_Kaiser = numpy.array(K.T * K)   
+    print("the image has shape", m_shape)
+    #m_img = np.matrix(np.zeros(m_shape, dtype=float))
+    #m_wight = np.matrix(np.zeros(m_shape, dtype=float))
+    m_img = np.zeros(m_shape, dtype=float)
+    m_wight = np.zeros(m_shape, dtype=float)
+    K = np.matrix(np.kaiser(_blk_size, _Beta_Kaiser))
+    m_Kaiser = np.array(K.T * K)   
     print("m_Kaiser shape", m_Kaiser.shape)         # 构造一个凯撒窗
     return m_img, m_wight, m_Kaiser
 
@@ -60,7 +61,7 @@ def Locate_blk(i, j, blk_step, block_Size, width, height):
     else:
         point_y = height - block_Size
 
-    m_blockPoint = numpy.array((point_x, point_y), dtype=int)  # 当前参考图像的顶点
+    m_blockPoint = np.array((point_x, point_y), dtype=int)  # 当前参考图像的顶点
 
     return m_blockPoint
 
@@ -84,7 +85,7 @@ def Define_SearchWindow(_noisyImg, _BlockPoint, _WindowSize, Blk_Size):
     if LY < 0:   LY = 0
     elif RY > _noisyImg.shape[1]:   LY = _noisyImg.shape[1]-_WindowSize
 
-    return numpy.array((LX, LY), dtype=int)
+    return np.array((LX, LY), dtype=int)
 
 
 def Step1_fast_match_color(_noisyImg, _BlockPoint):
@@ -102,24 +103,24 @@ def Step1_fast_match_color(_noisyImg, _BlockPoint):
     Threshold = First_Match_threshold
     max_matched = Step1_max_matched_cnt
     Window_size = Step1_Search_Window
-    print(_noisyImg.shape)
+    # print("noisy image shape: ", _noisyImg.shape)
     chnl = _noisyImg.shape[2] # chnl = 3 for color image
 
-    blk_positions = numpy.zeros((max_matched, 2), dtype=int)  # 用于记录相似blk的位置
-    Final_similar_blocks = numpy.zeros((max_matched, Blk_Size, Blk_Size, chnl), dtype=float)
-    dct_img = numpy.zeros((Blk_Size, Blk_Size, chnl), dtype=float)
-    dct_Tem_img = numpy.zeros((Blk_Size, Blk_Size, chnl), dtype=float)
+    blk_positions = np.zeros((max_matched, 2), dtype=int)  # 用于记录相似blk的位置
+    Final_similar_blocks = np.zeros((max_matched, Blk_Size, Blk_Size, chnl), dtype=float)
+    dct_img = np.zeros((Blk_Size, Blk_Size, chnl), dtype=float)
+    dct_Tem_img = np.zeros((Blk_Size, Blk_Size, chnl), dtype=float)
 
     for ch in range(chnl):
         img = _noisyImg[present_x: present_x+Blk_Size, present_y: present_y+Blk_Size, ch]
-        dct_img[:,:,ch] = cv2.dct(img.astype(numpy.float64))  # 对目标作block作二维余弦变换
+        dct_img[:,:,ch] = cv2.dct(img.astype(np.float64))  # 对目标作block作二维余弦变换
 
         Final_similar_blocks[0, :, :, ch] = dct_img[:,:,ch]
 
     blk_positions[0, :] = _BlockPoint
 
     Window_location = Define_SearchWindow(_noisyImg, _BlockPoint, Window_size, Blk_Size)
-    print("window location: ", Window_location)
+    # print("window location: ", Window_location)
     # find the maximum number of blocks
     blk_num = (Window_size-Blk_Size)/Search_Step  # 确定最多可以找到多少相似blk
     blk_num = int(blk_num)
@@ -127,9 +128,9 @@ def Step1_fast_match_color(_noisyImg, _BlockPoint):
     (present_x, present_y) = Window_location
 
 	# TODO: why is this blk_num**2? becuase its in both x and y directions
-    similar_blocks = numpy.zeros((blk_num**2, Blk_Size, Blk_Size, chnl), dtype=float)
-    m_Blkpositions = numpy.zeros((blk_num**2, 2), dtype=int)
-    Distances = numpy.zeros(blk_num**2, dtype=float)  # 记录各个blk与它的相似度
+    similar_blocks = np.zeros((blk_num**2, Blk_Size, Blk_Size, chnl), dtype=float)
+    m_Blkpositions = np.zeros((blk_num**2, 2), dtype=int)
+    Distances = np.zeros(blk_num**2, dtype=float)  # 记录各个blk与它的相似度
 
 
     # 开始在_Search_Window中搜索,初始版本先采用遍历搜索策略,这里返回最相似的几块
@@ -140,10 +141,10 @@ def Step1_fast_match_color(_noisyImg, _BlockPoint):
                 tem_img = _noisyImg[present_x: present_x+Blk_Size, present_y: present_y+Blk_Size, ch]
                 #print("present_x = "+str(present_x)+"; present_y = "+str(present_y)+"; Blk_Size = "+str(Blk_Size))
                 #print("tem_img.shape = "+str(tem_img.shape))
-                dct_Tem_img[:,:,ch] = cv2.dct(tem_img.astype(numpy.float64))
+                dct_Tem_img[:,:,ch] = cv2.dct(tem_img.astype(np.float64))
                 #print("dct_img.shape = "+str(dct_img.shape)+"; dct_Tem_img.shape = "+str(dct_Tem_img.shape))
             # TODO: is this even correct? 
-            m_Distance = numpy.linalg.norm((dct_img[:,:,0]-dct_Tem_img[:,:,0]))**2 / (Blk_Size**2) # only on luminance
+            m_Distance = np.linalg.norm((dct_img[:,:,0]-dct_Tem_img[:,:,0]))**2 / (Blk_Size**2) # only on luminance
             #print("step 1 m_Distance : "+str(m_Distance)+ "; Threshold is "+str(Threshold)+"; matched_cnt is "+str(matched_cnt))
             #print("dct_img-dct_Tem_img = "+str(dct_img-dct_Tem_img))
             #print("dct_img = "+str(dct_img))
@@ -162,7 +163,7 @@ def Step1_fast_match_color(_noisyImg, _BlockPoint):
     Distances = Distances[:matched_cnt]
     Sort = Distances.argsort()
 
-    #print("Inside Step1_fast_match(), numpy.sum(numpy.abs(similar_blocks))) = "+str(numpy.sum(numpy.abs(similar_blocks))))
+    #print("Inside Step1_fast_match(), np.sum(np.abs(similar_blocks))) = "+str(np.sum(np.abs(similar_blocks))))
 
     # 统计一下找到了多少相似的blk
     if matched_cnt < max_matched:
@@ -187,9 +188,9 @@ def Step1_3DFiltering_color(_similar_blocks):
     '''
 	#  
     chnl = _similar_blocks.shape[3] # chnl = 3 for color image
-    statis_nonzero = numpy.zeros(chnl, dtype=int)  # 非零元素个数
+    statis_nonzero = np.zeros(chnl, dtype=int)  # 非零元素个数
     m_Shape = _similar_blocks.shape
-    print("similar blocks shape", _similar_blocks.shape)
+    # print("similar blocks shape", _similar_blocks.shape)
 
     # code below is computationally expensive
     # 下面这一段代码很耗时
@@ -199,7 +200,7 @@ def Step1_3DFiltering_color(_similar_blocks):
         for j in range(m_Shape[2]):
             for ch in range(chnl):
                 tem_Vct_Trans = cv2.dct(_similar_blocks[:, i, j, ch])
-                tem_Vct_Trans[numpy.abs(tem_Vct_Trans[:]) < Threshold_Hard3D] = 0.
+                tem_Vct_Trans[np.abs(tem_Vct_Trans[:]) < Threshold_Hard3D] = 0.
                 statis_nonzero[ch] += tem_Vct_Trans.nonzero()[0].size
                 _similar_blocks[:, i, j, ch] = cv2.idct(tem_Vct_Trans)[0]
     return _similar_blocks, statis_nonzero
@@ -213,7 +214,7 @@ def Aggregation_hardthreshold_color(_similar_blocks, blk_positions, m_basic_img,
     '''
     _shape = _similar_blocks.shape
     chnl = _similar_blocks.shape[3]
-    print("block positions",blk_positions)
+    # print("block positions",blk_positions)
     for ch in range(chnl):
         if _nonzero_num[ch] < 1:
             _nonzero_num[ch] = 1
@@ -247,18 +248,18 @@ def BM3D_1st_step_color(_noisyImg):
         for j in range(int(Height_num+2)):
             # m_blockPoint当前参考图像的顶点
             m_blockPoint = Locate_blk(i, j, blk_step, block_Size, width, height)       # 该函数用于保证当前的blk不超出图像范围
-            print(m_blockPoint)
+            # print(m_blockPoint)
             Similar_Blks, Positions, Count = Step1_fast_match_color(_noisyImg, m_blockPoint)
-            #print("step 1 Similar_Blks shape : "+str(Similar_Blks.shape)+"; Count = "+str(Count)+"; sum(abs(Similar_Blks)) = "+str(numpy.sum(numpy.abs(Similar_Blks))))
+            #print("step 1 Similar_Blks shape : "+str(Similar_Blks.shape)+"; Count = "+str(Count)+"; sum(abs(Similar_Blks)) = "+str(np.sum(np.abs(Similar_Blks))))
             Similar_Blks, statis_nonzero = Step1_3DFiltering_color(Similar_Blks)
             #print("step 1 Similar_Blks shape : "+str(Similar_Blks.shape)+"; step 1 statis_nonzero = "+str(statis_nonzero))
             Aggregation_hardthreshold_color(Similar_Blks, Positions, Basic_img, m_Wight, statis_nonzero, Count, m_Kaiser)
     for ch in range(chnl):
         Basic_img[:, :, ch] /= m_Wight[:, :, ch]
-    #basic = numpy.matrix(Basic_img, dtype=int)
-    basic = numpy.array(Basic_img, dtype=numpy.int32)
-    basic = numpy.clip(basic, 0, 255)
-    basic = numpy.array(basic, dtype=numpy.uint8)
+    #basic = np.matrix(Basic_img, dtype=int)
+    basic = np.array(Basic_img, dtype=np.int32)
+    basic = np.clip(basic, 0, 255)
+    basic = np.array(basic, dtype=np.uint8)
 
     return basic
 
@@ -278,25 +279,25 @@ def Step2_fast_match_color(_Basic_img, _noisyImg, _BlockPoint):
     Window_size = Step2_Search_Window
     chnl = _noisyImg.shape[2] # chnl = 3 for color image
 
-    blk_positions = numpy.zeros((max_matched, 2), dtype=int)  # 用于记录相似blk的位置
-    Final_similar_blocks = numpy.zeros((max_matched, Blk_Size, Blk_Size, chnl), dtype=float)
-    Final_noisy_blocks = numpy.zeros((max_matched, Blk_Size, Blk_Size, chnl), dtype=float)
-    dct_img = numpy.zeros((Blk_Size, Blk_Size, chnl), dtype=float)
-    dct_n_img = numpy.zeros((Blk_Size, Blk_Size, chnl), dtype=float)
-    dct_Tem_img = numpy.zeros((Blk_Size, Blk_Size, chnl), dtype=float)
+    blk_positions = np.zeros((max_matched, 2), dtype=int)  # 用于记录相似blk的位置
+    Final_similar_blocks = np.zeros((max_matched, Blk_Size, Blk_Size, chnl), dtype=float)
+    Final_noisy_blocks = np.zeros((max_matched, Blk_Size, Blk_Size, chnl), dtype=float)
+    dct_img = np.zeros((Blk_Size, Blk_Size, chnl), dtype=float)
+    dct_n_img = np.zeros((Blk_Size, Blk_Size, chnl), dtype=float)
+    dct_Tem_img = np.zeros((Blk_Size, Blk_Size, chnl), dtype=float)
 
-    print("blk positions, final similar blocks, final noisy blocks, dct img, dct n img, dct tem img")
-    print(blk_positions.shape,Final_similar_blocks.shape,Final_noisy_blocks.shape,dct_img.shape,dct_n_img.shape,dct_Tem_img.shape)
+    # print("blk positions, final similar blocks, final noisy blocks, dct img, dct n img, dct tem img")
+    # print(blk_positions.shape,Final_similar_blocks.shape,Final_noisy_blocks.shape,dct_img.shape,dct_n_img.shape,dct_Tem_img.shape)
 
     for ch in range(chnl):
 
     	# both basic and noisy image are transformed
         img = _Basic_img[present_x: present_x+Blk_Size, present_y: present_y+Blk_Size, ch]
-        dct_img[:,:,ch] = cv2.dct(img.astype(numpy.float64))  # 对目标作block作二维余弦变换
+        dct_img[:,:,ch] = cv2.dct(img.astype(np.float64))  # 对目标作block作二维余弦变换
         Final_similar_blocks[0, :, :, ch] = dct_img[:,:,ch]
 
         n_img = _noisyImg[present_x: present_x+Blk_Size, present_y: present_y+Blk_Size, ch]
-        dct_n_img[:,:,ch] = cv2.dct(n_img.astype(numpy.float64))  # 对目标作block作二维余弦变换
+        dct_n_img[:,:,ch] = cv2.dct(n_img.astype(np.float64))  # 对目标作block作二维余弦变换
         Final_noisy_blocks[0, :, :,ch] = dct_n_img[:,:,ch]
 
     blk_positions[0, :] = _BlockPoint
@@ -307,9 +308,9 @@ def Step2_fast_match_color(_Basic_img, _noisyImg, _BlockPoint):
     (present_x, present_y) = Window_location
 
 # temporary holder hence hold all the possible blocks, but to optimize maybe we could only keep the max possible number?
-    similar_blocks = numpy.zeros((blk_num**2, Blk_Size, Blk_Size,chnl), dtype=float)
-    m_Blkpositions = numpy.zeros((blk_num**2, 2), dtype=int)
-    Distances = numpy.zeros(blk_num**2, dtype=float)  # 记录各个blk与它的相似度
+    similar_blocks = np.zeros((blk_num**2, Blk_Size, Blk_Size,chnl), dtype=float)
+    m_Blkpositions = np.zeros((blk_num**2, 2), dtype=int)
+    Distances = np.zeros(blk_num**2, dtype=float)  # 记录各个blk与它的相似度
 
     # 开始在_Search_Window中搜索,初始版本先采用遍历搜索策略,这里返回最相似的几块
     matched_cnt = 0
@@ -317,8 +318,8 @@ def Step2_fast_match_color(_Basic_img, _noisyImg, _BlockPoint):
         for j in range(blk_num):
             for ch in range(chnl):
                 tem_img = _Basic_img[present_x: present_x+Blk_Size, present_y: present_y+Blk_Size, ch]
-                dct_Tem_img[:,:,ch] = cv2.dct(tem_img.astype(numpy.float64))
-            m_Distance = numpy.linalg.norm((dct_img-dct_Tem_img))**2 / (Blk_Size**2)
+                dct_Tem_img[:,:,ch] = cv2.dct(tem_img.astype(np.float64))
+            m_Distance = np.linalg.norm((dct_img-dct_Tem_img))**2 / (Blk_Size**2)
             #print("dct_img-dct_Tem_img = "+str(dct_img-dct_Tem_img))
             #print("dct_img = "+str(dct_img))
             #print("dct_Tem_img = "+str(dct_Tem_img))
@@ -355,7 +356,7 @@ def Step2_fast_match_color(_Basic_img, _noisyImg, _BlockPoint):
             # figure out what's going on here
             for ch in range(chnl):
                 n_img = _noisyImg[present_x: present_x+Blk_Size, present_y: present_y+Blk_Size, ch]
-                Final_noisy_blocks[i, :, :, ch] = cv2.dct(n_img.astype(numpy.float64))
+                Final_noisy_blocks[i, :, :, ch] = cv2.dct(n_img.astype(np.float64))
 
     return Final_similar_blocks, Final_noisy_blocks, blk_positions, Count
 
@@ -369,18 +370,18 @@ def Step2_3DFiltering_color(_Similar_Bscs, _Similar_Imgs, Count):
     '''
     chnl = _Similar_Bscs.shape[3] # chnl = 3 for color image
     m_Shape = _Similar_Bscs.shape
-    Wiener_wight = numpy.zeros((m_Shape[1], m_Shape[2], m_Shape[3]), dtype=float)
+    Wiener_wight = np.zeros((m_Shape[1], m_Shape[2], m_Shape[3]), dtype=float)
 
     for i in range(m_Shape[1]):
         for j in range(m_Shape[2]):
             for ch in range(chnl):
                 tem_vector = _Similar_Bscs[:, i, j, ch]
-                tem_Vct_Trans = numpy.matrix(cv2.dct(tem_vector))
+                tem_Vct_Trans = np.matrix(cv2.dct(tem_vector))
                 # find the l2 norm
-                Norm_2 = numpy.float64(tem_Vct_Trans.T * tem_Vct_Trans)
+                Norm_2 = np.float64(tem_Vct_Trans.T * tem_Vct_Trans)
                 # 
                 m_weight = Norm_2/Count/(Norm_2/Count + sigma_color[ch]**2)
-                print("m weight shape", m_weight.shape)
+                # print("m weight shape", m_weight.shape)
                 #print("m_weight = "+str(m_weight))
                 if m_weight != 0:
                     Wiener_wight[i, j, ch] = 1./(m_weight**2 * sigma_color[ch]**2)
@@ -402,7 +403,7 @@ def Aggregation_Wiener_color(_Similar_Blks, _Wiener_wight, blk_positions, m_basi
     # I think the process is such that every noisy block will have at least one of such blocks that helps in denoising, 
     # then we initilize an empty tensor and add the values of each block
     _shape = _Similar_Blks.shape
-    print("similar blocks shape", _shape)
+    # print("similar blocks shape", _shape)
     #block_wight = _Wiener_wight # * Kaiser
     chnl = _Similar_Blks.shape[3]
 
@@ -433,25 +434,25 @@ def BM3D_2nd_step_color(_basicImg, _noisyImg):
         for j in range(int(Height_num+2)):
             m_blockPoint = Locate_blk(i, j, blk_step, block_Size, width, height)
             Similar_Blks, Similar_Imgs, Positions, Count = Step2_fast_match_color(_basicImg, _noisyImg, m_blockPoint)
-            #print("step 2 Similar_Blks shape : "+str(Similar_Blks.shape)+"; Count = "+str(Count)+"; sum(abs(Similar_Blks)) = "+str(numpy.sum(numpy.abs(Similar_Blks))))
+            #print("step 2 Similar_Blks shape : "+str(Similar_Blks.shape)+"; Count = "+str(Count)+"; sum(abs(Similar_Blks)) = "+str(np.sum(np.abs(Similar_Blks))))
             Similar_Blks, Wiener_wight = Step2_3DFiltering_color(Similar_Blks, Similar_Imgs, Count)
             #print(Similar_Blks.shape)
             Aggregation_Wiener_color(Similar_Blks, Wiener_wight, Positions, m_img, m_Wight, Count, m_Kaiser)
     for ch in range(chnl):
         m_img[:, :, ch] /= m_Wight[:, :, ch]
 
-    Final = numpy.array(m_img, dtype=numpy.int32)
-    Final = numpy.clip(Final, 0, 255)
-    Final = numpy.array(Final, dtype=numpy.uint8)
+    Final = np.array(m_img, dtype=np.int32)
+    Final = np.clip(Final, 0, 255)
+    Final = np.array(Final, dtype=np.uint8)
 
     return Final
 
 
 def PSNR2(img1, img2):
-    D = numpy.array(img2, dtype=numpy.int64) - numpy.array(img1, dtype=numpy.int64)
+    D = np.array(img2, dtype=np.int64) - np.array(img1, dtype=np.int64)
     D = D**2
     RMSE = D.sum()/img1.size
-    psnr = 10*numpy.log10(float(255.**2)/RMSE)
+    psnr = 10*np.log10(float(255.**2)/RMSE)
     return psnr
 
 
@@ -461,19 +462,19 @@ if __name__ == '__main__':
     sigma = 20#50 # default 25
     Threshold_Hard3D = 2.7*sigma#46 # default 2.7*sigma(default 25)           # Threshold for Hard Thresholding
     sigma_color = [0, 0, 0];
-    sigma_color[0] = numpy.sqrt(0.299*0.299 + 0.587*0.587 + 0.114*0.144)*sigma
-    sigma_color[1] = numpy.sqrt(0.169*0.169 + 0.331*0.331 + 0.5*0.5)*sigma
-    sigma_color[2] = numpy.sqrt(0.5*0.5 + 0.419*0.419 + 0.081*0.081)*sigma
+    sigma_color[0] = np.sqrt(0.299*0.299 + 0.587*0.587 + 0.114*0.144)*sigma
+    sigma_color[1] = np.sqrt(0.169*0.169 + 0.331*0.331 + 0.5*0.5)*sigma
+    sigma_color[2] = np.sqrt(0.5*0.5 + 0.419*0.419 + 0.081*0.081)*sigma
     print("sigma = "+str(sigma))
 
-    img_name_gold = "image_Lena512rgb.png";
+    img_name_gold = "testImage_0.png";
     img_gold = cv2.imread(img_name_gold, cv2.IMREAD_COLOR)
-    noise = numpy.random.normal(scale=sigma,
-                             size=img_gold.shape).astype(numpy.int32)
+    noise = np.random.normal(scale=sigma,
+                             size=img_gold.shape).astype(np.int32)
 
     img = img_gold + noise
-    img = numpy.clip(img, 0, 255)
-    img = img.astype(numpy.uint8)
+    img = np.clip(img, 0, 255)
+    img = img.astype(np.uint8)
 
 
     imgYCB = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
