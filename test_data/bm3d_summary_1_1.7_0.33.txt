@@ -6,11 +6,9 @@
            Compiled : Oct 18 2019
                Mode : Scripted
 
-Input image file name                              : bm3d_stacked.mrc
-Input is a movie (stack of frames)                 : yes
-Number of frames to average together               : 50
-Output diagnostic image file name                  : bm3d_diagnostic.mrc
-Pixel size                                         : 1.5
+Input image file name                              : bm3d_averaged_1_1.7_0.33.mrc
+Output diagnostic image file name                  : bm3d_diagnostic_1_1.7_0.33.mrc
+Pixel size                                         : 3
 Acceleration voltage                               : 300
 Spherical aberration                               : 0
 Amplitude contrast                                 : 0.07
@@ -26,21 +24,21 @@ Known astigmatism                                  : 0.0
 Known astigmatism angle                            : 0.0
 Find additional phase shift?                       : no
 Do you want to set expert options?                 : no
-File name: bm3d_stacked.mrc
+File name: bm3d_averaged_1_1.7_0.33.mrc
 File type: MRC
-Dimensions: X = 620 Y = 600 Z = 50
-Number of slices: 50
+Dimensions: X = 620 Y = 600 Z = 1
+Number of slices: 1
 Working on micrograph 1 of 1
-Estimated defocus values        : 4848.16 , 4848.16 Angstroms
+Estimated defocus values        : 19678.02 , 19678.02 Angstroms
 Estimated azimuth of astigmatism: 0.00 degrees
-Score                           : 0.08246
-Pixel size for fitting          : 1.500 Angstroms
-Thon rings with good fit up to  : 3.5 Angstroms
+Score                           : -0.01844
+Pixel size for fitting          : 3.000 Angstroms
+Thon rings with good fit up to  : 5.8 Angstroms
 Did not detect CTF aliasing
 
-Summary of results                          : bm3d_diagnostic.txt
-Diagnostic images                           : bm3d_diagnostic.mrc
-Detailed results, including 1D fit profiles : bm3d_diagnostic_avrot.txt
-Use this command to plot 1D fit profiles    : ctffind_plot_results.sh bm3d_diagnostic_avrot.txt
+Summary of results                          : bm3d_diagnostic_1_1.7_0.33.txt
+Diagnostic images                           : bm3d_diagnostic_1_1.7_0.33.mrc
+Detailed results, including 1D fit profiles : bm3d_diagnostic_1_1.7_0.33_avrot.txt
+Use this command to plot 1D fit profiles    : ctffind_plot_results.sh bm3d_diagnostic_1_1.7_0.33_avrot.txt
 
 

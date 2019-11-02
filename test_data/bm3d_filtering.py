@@ -120,9 +120,10 @@ def bm3d_half_cycle(image_stack):
   filtered_stack = reverse_transform_2d(final_blocks_squeezed)
   return filtered_stack
 
+
 # filtered_stack = bm3d_cycle(norm_stack)
-# filtered_stack = bm3d_cycle(img_stack)
-filtered_stack = bm3d_half_cycle(img_stack)
+filtered_stack = bm3d_cycle(img_stack)
+# filtered_stack = bm3d_half_cycle(img_stack)
 
 # get the original average frame
 avg_frame = norm_stack.mean(axis=0)

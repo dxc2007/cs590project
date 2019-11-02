@@ -2,13 +2,20 @@
 #
 unblur << eof
 $1
-_.mrc
-1.5
+bm3d_$2_$3_$4_$5.mrc
+3  
+1 
+no 
+yes 
+2 
+80
+$6
 1
+1
+1
+20
 yes
-300
-2
+1
 0
-no
-no
+no 
 eof

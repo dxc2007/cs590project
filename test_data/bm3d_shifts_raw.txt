@@ -7,62 +7,13 @@
                Mode : Scripted
 
 Input stack filename                               : bm3d_filtered.mrc
-Output aligned sum                                 : _.mrc
-Pixel size of images (A)                           : 1.5
-Output binning factor                              : 1
-Apply Exposure filter?                             : yes
-Acceleration voltage (kV)                          : 300
-Exposure per frame (e/A^2)                         : 2
-Pre-exposure amount (e/A^2)                        : 0
-Set Expert Options?                                : no
-Correct Magnification Distortion?                  : no
-image #0 = -20.862347, -6.071291
-image #1 = -10.579573, -2.587615
-image #2 = -7.331810, -1.567681
-image #3 = -6.852066, -1.540911
-image #4 = -6.582653, -1.693120
-image #5 = -6.151283, -1.817384
-image #6 = -5.581220, -1.610674
-image #7 = -5.079379, -1.328437
-image #8 = -4.588661, -1.169069
-image #9 = -3.925828, -1.074583
-image #10 = -3.248007, -0.890503
-image #11 = -2.794033, -0.722882
-image #12 = -2.353447, -0.580341
-image #13 = -2.059646, -0.556510
-image #14 = -1.794503, -0.502285
-image #15 = -1.629347, -0.371370
-image #16 = -1.273721, -0.148283
-image #17 = -1.074214, -0.059448
-image #18 = -0.782827, 0.028347
-image #19 = -0.361514, -0.050688
-image #20 = 0.012313, -0.081252
-image #21 = 0.146293, -0.046216
-image #22 = 0.210147, 0.001651
-image #23 = 0.175726, -0.124219
-image #24 = 0.077982, -0.109906
-image #25 = 0.000000, 0.000000
-image #26 = 0.270799, 0.061683
-image #27 = 0.388137, 0.090169
-image #28 = 0.618886, 0.300647
-image #29 = 0.746716, 0.397376
-image #30 = 0.986819, 0.322385
-image #31 = 1.043495, 0.194474
-image #32 = 1.213110, 0.419935
-image #33 = 1.252461, 0.547912
-image #34 = 1.100786, 0.568818
-image #35 = 1.056794, 0.562880
-image #36 = 1.099797, 0.591055
-image #37 = 1.249159, 0.489015
-image #38 = 1.303028, 0.430256
-image #39 = 1.471217, 0.505825
-image #40 = 1.600790, 0.417029
-image #41 = 1.707271, 0.414804
-image #42 = 1.756599, 0.613750
-image #43 = 1.871620, 0.927726
-image #44 = 2.142745, 0.933468
-image #45 = 2.285662, 0.817863
-image #46 = 2.138957, 0.737801
-image #47 = 1.974407, 0.875216
-image #48 = 2.087565, 1.005751
-image #49 = 2.272810, 0.987396
+Output aligned sum                                 : bm3d____.mrc
+Pixel size of images (A)                           : 3  
+Output binning factor                              : 1 
+Apply Exposure filter?                             : no 
+Set Expert Options?                                : yes 
+Minimum shift for initial search (A)               : 2 
+Outer radius shift limit (A)                       : 80
+B-factor to apply to images (A^2)                  : 
+ Error: Blank answer in scripted mode, exiting...
+
