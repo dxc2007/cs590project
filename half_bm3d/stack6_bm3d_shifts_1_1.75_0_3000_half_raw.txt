@@ -1,0 +1,75 @@
+
+
+        **   Welcome to Unblur   **
+
+            Version : 1.00
+           Compiled : Oct 18 2019
+               Mode : Scripted
+
+Input stack filename                               : stack6_bm3d_1_1.75_0_3000_half.mrc
+Output aligned sum                                 : stack6_bm3d_averaged_1_1.75_0_3000_half.mrc
+Pixel size of images (A)                           : 3  
+Output binning factor                              : 1 
+Apply Exposure filter?                             : no 
+Set Expert Options?                                : yes 
+Minimum shift for initial search (A)               : 2 
+Outer radius shift limit (A)                       : 80
+B-factor to apply to images (A^2)                  : 3000
+Half-width of vertical Fourier mask                : 1
+Half-width of horizontal Fourier mask              : 1
+Termination shift threshold (A)                    : 1
+Maximum number of iterations                       : 20
+Input stack is gain-corrected?                     : yes
+First frame to use for sum                         : 1
+Last frame to use for sum (0 for last frame)       : 0
+Correct Magnification Distortion?                  : no 
+image #0 = -13.274467, -1.620825
+image #1 = -7.252755, 1.431252
+image #2 = -5.632273, 2.079065
+image #3 = -5.515536, 2.170021
+image #4 = -5.315176, 2.321843
+image #5 = -5.170261, 2.494471
+image #6 = -4.964700, 2.438847
+image #7 = -4.811599, 2.342823
+image #8 = -4.622770, 2.310111
+image #9 = -4.352476, 2.424968
+image #10 = -3.722534, 2.339010
+image #11 = -3.158254, 2.174396
+image #12 = -2.833437, 2.005683
+image #13 = -2.676030, 1.785306
+image #14 = -2.352501, 1.480329
+image #15 = -2.202377, 1.434849
+image #16 = -1.934242, 1.329105
+image #17 = -1.605915, 1.244302
+image #18 = -1.347936, 1.154444
+image #19 = -1.468463, 0.926800
+image #20 = -1.026349, 0.793537
+image #21 = -0.440541, 0.615898
+image #22 = -0.154674, 0.507435
+image #23 = -0.282169, 0.161251
+image #24 = -0.140884, 0.061592
+image #25 = 0.000000, 0.000000
+image #26 = -0.057982, 0.095350
+image #27 = -0.040139, 0.254657
+image #28 = -0.085854, 0.170368
+image #29 = 0.178605, 0.100186
+image #30 = 0.195596, 0.216065
+image #31 = 0.458052, 0.154942
+image #32 = 0.673160, -0.165422
+image #33 = 0.980789, -0.442436
+image #34 = 1.225229, -0.297401
+image #35 = 1.428742, -0.373343
+image #36 = 1.614336, -0.355020
+image #37 = 1.607523, -0.399974
+image #38 = 1.461804, -0.396638
+image #39 = 1.467656, -0.463136
+image #40 = 1.762455, -0.617880
+image #41 = 2.043427, -0.756534
+image #42 = 2.278068, -0.744165
+image #43 = 2.688478, -0.428743
+image #44 = 2.946407, -0.373867
+image #45 = 2.976023, -0.446105
+image #46 = 2.993074, -0.669714
+image #47 = 3.279951, -0.739499
+image #48 = 3.483260, -0.750986
+image #49 = 2.944830, -0.800274
