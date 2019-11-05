@@ -1,7 +1,7 @@
 #!/bin/csh
 #
 unblur << eof
-$1_bm3d_$2_$3_$4_$5_$6.mrc
+$1_bm3d_$2_$3_$4_$6.mrc
 $1_bm3d_averaged_$2_$3_$4_$5_$6.mrc
 3  
 1 
