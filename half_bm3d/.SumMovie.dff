@@ -1,9 +1,0 @@
-INPUT_FILENAME stack20.mrc
-number_of_frames_per_movie 50
-output_filename stack20_bm3d_averaged_1_1.0_0_2000_half.mrc
-shifts_filename stack20_bm3d_shifts_1_1.0_0_2000_half.txt
-frc_filename stack20_bm3d_frc_1_1.0_0_2000_half.txt
-first_frame 1
-LAST_FRAME 50
-PIXEL_SIZE 3
-apply_dose_filter no
