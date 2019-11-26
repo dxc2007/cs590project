@@ -1,0 +1,9 @@
+INPUT_FILENAME stack19_ubbm3d_1_0.0_0_250_half.mrc
+number_of_frames_per_movie 50
+output_filename stack19_ubbm3d_averaged_1_0.0_0_250_half.mrc
+shifts_filename stack19_ubbm3d_shifts_1_0.0_0_250_half_summovie.txt
+frc_filename stack19_ubbm3d_frc_1_0.0_0_250_half.txt
+first_frame 1
+LAST_FRAME 50
+PIXEL_SIZE 3
+apply_dose_filter no

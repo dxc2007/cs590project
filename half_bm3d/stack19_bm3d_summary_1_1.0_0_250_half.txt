@@ -1,0 +1,44 @@
+
+
+        **   Welcome to Ctffind   **
+
+            Version : 4.1.9
+           Compiled : Oct 18 2019
+               Mode : Scripted
+
+Input image file name                              : stack19_bm3d_averaged_1_1.0_0_250_half.mrc
+Output diagnostic image file name                  : stack19_bm3d_diagnostic_1_1.0_0_250_half.mrc
+Pixel size                                         : 3
+Acceleration voltage                               : 300
+Spherical aberration                               : 0
+Amplitude contrast                                 : 0.07
+Size of amplitude spectrum to compute              : 512
+Minimum resolution                                 : 40
+Maximum resolution                                 : 6
+Minimum defocus                                    : 5000
+Maximum defocus                                    : 50000
+Defocus search step                                : 100
+Do you know what astigmatism is present?           : yes
+Slower, more exhaustive search?                    : no
+Known astigmatism                                  : 0.0
+Known astigmatism angle                            : 0.0
+Find additional phase shift?                       : no
+Do you want to set expert options?                 : no
+File name: stack19_bm3d_averaged_1_1.0_0_250_half.mrc
+File type: MRC
+Dimensions: X = 620 Y = 600 Z = 1
+Number of slices: 1
+Working on micrograph 1 of 1
+Estimated defocus values        : 19591.45 , 19591.45 Angstroms
+Estimated azimuth of astigmatism: 0.00 degrees
+Score                           : 0.01114
+Pixel size for fitting          : 3.000 Angstroms
+Thon rings with good fit up to  : 5.6 Angstroms
+Did not detect CTF aliasing
+
+Summary of results                          : stack19_bm3d_diagnostic_1_1.0_0_250_half.txt
+Diagnostic images                           : stack19_bm3d_diagnostic_1_1.0_0_250_half.mrc
+Detailed results, including 1D fit profiles : stack19_bm3d_diagnostic_1_1.0_0_250_half_avrot.txt
+Use this command to plot 1D fit profiles    : ctffind_plot_results.sh stack19_bm3d_diagnostic_1_1.0_0_250_half_avrot.txt
+
+

@@ -13,8 +13,8 @@ Acceleration voltage                               : 300
 Spherical aberration                               : 0
 Amplitude contrast                                 : 0.07
 Size of amplitude spectrum to compute              : 512
-Minimum resolution                                 : 30
-Maximum resolution                                 : 5
+Minimum resolution                                 : 40
+Maximum resolution                                 : 6
 Minimum defocus                                    : 5000
 Maximum defocus                                    : 50000
 Defocus search step                                : 100
@@ -29,11 +29,11 @@ File type: MRC
 Dimensions: X = 620 Y = 600 Z = 1
 Number of slices: 1
 Working on micrograph 1 of 1
-Estimated defocus values        : 19660.41 , 19660.41 Angstroms
+Estimated defocus values        : 19552.54 , 19552.54 Angstroms
 Estimated azimuth of astigmatism: 0.00 degrees
-Score                           : -0.01868
+Score                           : 0.00268
 Pixel size for fitting          : 3.000 Angstroms
-Thon rings with good fit up to  : 6.2 Angstroms
+Thon rings with good fit up to  : 6.6 Angstroms
 Did not detect CTF aliasing
 
 Summary of results                          : stack1_bm3d_diagnostic_1_1.0_0_2000_half.txt

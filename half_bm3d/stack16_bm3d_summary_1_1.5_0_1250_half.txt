@@ -13,8 +13,8 @@ Acceleration voltage                               : 300
 Spherical aberration                               : 0
 Amplitude contrast                                 : 0.07
 Size of amplitude spectrum to compute              : 512
-Minimum resolution                                 : 30
-Maximum resolution                                 : 5
+Minimum resolution                                 : 40
+Maximum resolution                                 : 6
 Minimum defocus                                    : 5000
 Maximum defocus                                    : 50000
 Defocus search step                                : 100
@@ -29,9 +29,9 @@ File type: MRC
 Dimensions: X = 620 Y = 600 Z = 1
 Number of slices: 1
 Working on micrograph 1 of 1
-Estimated defocus values        : 24851.40 , 24851.40 Angstroms
+Estimated defocus values        : 24887.65 , 24887.65 Angstroms
 Estimated azimuth of astigmatism: 0.00 degrees
-Score                           : -0.02118
+Score                           : 0.01697
 Pixel size for fitting          : 3.000 Angstroms
 Thon rings with good fit up to  : 5.5 Angstroms
 Did not detect CTF aliasing

@@ -1,0 +1,75 @@
+
+
+        **   Welcome to Unblur   **
+
+            Version : 1.00
+           Compiled : Oct 18 2019
+               Mode : Scripted
+
+Input stack filename                               : stack1_ubbm3d_1_2.0_0_0_half.mrc
+Output aligned sum                                 : _.mrc
+Pixel size of images (A)                           : 1.51.51.51.51.5 
+Output binning factor                              : 1 
+Apply Exposure filter?                             : no 
+Set Expert Options?                                : yes 
+Minimum shift for initial search (A)               : 2 
+Outer radius shift limit (A)                       : 80
+B-factor to apply to images (A^2)                  : 0
+Half-width of vertical Fourier mask                : 1
+Half-width of horizontal Fourier mask              : 1
+Termination shift threshold (A)                    : 1
+Maximum number of iterations                       : 20
+Input stack is gain-corrected?                     : yes
+First frame to use for sum                         : 1
+Last frame to use for sum (0 for last frame)       : 0
+Correct Magnification Distortion?                  : no 
+image #0 = 81.867485, -264.277130
+image #1 = -12.070847, -118.596054
+image #2 = -5.453712, -159.068756
+image #3 = 45.524281, -265.481140
+image #4 = 89.610329, -258.790070
+image #5 = 146.578735, -125.191963
+image #6 = 207.028549, -3.640932
+image #7 = 230.002014, 55.257236
+image #8 = 214.555084, 70.945343
+image #9 = 180.158630, 69.547913
+image #10 = 152.615601, -49.903683
+image #11 = 160.819992, -136.269958
+image #12 = 167.129654, -193.110504
+image #13 = 171.120819, -150.448502
+image #14 = 181.483292, -100.580063
+image #15 = 201.369476, -63.503666
+image #16 = 129.069077, -101.628418
+image #17 = 69.922050, -114.027992
+image #18 = 39.515923, -136.130035
+image #19 = 64.339462, -147.321884
+image #20 = 107.941139, -102.394112
+image #21 = 214.054764, -61.967094
+image #22 = 269.200806, -123.011497
+image #23 = 242.413727, -184.000977
+image #24 = 120.360855, -86.869591
+image #25 = 0.000000, 0.000000
+image #26 = -36.897564, 83.677132
+image #27 = -29.334755, 72.627365
+image #28 = 57.982552, 13.791658
+image #29 = 127.752815, -127.717163
+image #30 = 191.647461, -203.402496
+image #31 = 160.190750, -230.661713
+image #32 = 136.675354, -194.832138
+image #33 = 147.787521, -121.036858
+image #34 = 149.965805, -56.908413
+image #35 = 155.318542, -85.352150
+image #36 = 113.768547, -116.382965
+image #37 = 186.954300, -94.295944
+image #38 = 258.639740, -22.726368
+image #39 = 275.405640, -57.007984
+image #40 = 143.689163, -48.177410
+image #41 = 77.987541, -24.219526
+image #42 = 104.145798, -50.820442
+image #43 = 165.006790, -132.000458
+image #44 = 181.374969, -180.981201
+image #45 = 161.662216, -136.296204
+image #46 = 116.052887, -135.809036
+image #47 = 118.667229, -125.766922
+image #48 = 201.704483, -81.469780
+image #49 = 316.159302, 115.555946

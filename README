@@ -1,0 +1,17 @@
+Fall 2019 CS 590 project source
+Xiaochen Du and Madhurima Vardhan
+
+Environment
+Run "conda env create -f environment.yml"
+Assume cisTEM installed
+Download summovies_1.0.2 from cisTEM website and run this command to be able to run "summovie" on the command line
+export PATH=$PATH:"/path/to/590project/summovie_1.0.2/bin"
+
+Scripts in masterscripts, first downsample using script in downsample folder.
+In pipeline, add .mrc files and edit the parameters in bm3d_half.sh (expt. 1), unblur_bm3d_half.sh (expt. 2), and unblur_full_bm3d.sh (expt. 3).
+Run these scripts to obtain results.
+Go onto the respective jupyter notebooks for analysis.
+For 3D reconstruction, move the translations files and the original .mrc files into the upsample folder, run realign.sh.
+
+Our results for our experiments are also in the respective folders: half_bm3d (expt. 1), unblur_half_bm3d_xtoy (expt. 2), and unblur_full_bm3d (expt. 3). Open the jupyter notebooks to visualize.
+Exploratory results for local patch alignments are in the local_alignment folder.
